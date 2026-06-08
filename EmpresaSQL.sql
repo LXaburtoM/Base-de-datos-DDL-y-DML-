@@ -166,6 +166,37 @@ Insert Into TDepartamento (cNombreDepartamento) Values
 ('Investigación y Desarrollo'), ('Logística');
 Go
 
+41. incrementar en 10% el salario de todos los empleados.
+Update TEmpleado Set nSalario = nSalario * 1.10;
+Go
+
+-- 42. incrementar en 20% el salario de los empleados de un departamento específico (ej: tecnología id=1).
+Update TEmpleado Set nSalario = nSalario * 1.20 Where nDepartamentoID = 1;
+Go
+
+-- 43. actualizar el correo electrónico de un empleado.
+Update TEmpleado Set cEmail = 'carlos.gomez.nuevo@empresa.com' Where cNIF = '11111111A';
+Go
+
+-- 44. modificar el cargo de un empleado.
+Update TEmpleado Set nCargoID = 5 Where nEmpleadoID = 1;
+Go
+
+-- 45. cambiar el departamento de dos empleados.
+Update TEmpleado Set nDepartamentoID = 3 Where nEmpleadoID In (2, 4);
+Go
+
+-- 46. marcar como inactivos a los empleados con salario inferior a 500.
+Update TEmpleado Set bActivo = 0 Where nSalario < 500;
+Go
+
+-- 47. actualizar la fecha de finalización de un proyecto.
+Update TProyecto Set dFechaFinalizacion = '2026-07-31' Where nProyectoID = 2;
+Go
+
+-- 48. asignar un nuevo proyecto a un empleado.
+Insert Into TEmpleadoProyecto (nEmpleadoID, nProyectoID) Values (3, 2);
+Go
 
 
 
