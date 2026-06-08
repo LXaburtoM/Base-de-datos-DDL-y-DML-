@@ -41,7 +41,7 @@ Create Table TProyecto (
     nProyectoID Int Identity(1,1) Not Null, 
     cNombreProyecto Varchar(150) Not Null, 
     dFechaInicio Date Not Null, 
-    dFechaFinalizacion Date Null, 
+    dFechaFinalizacion Date Null,
     Constraint PK_TProyecto Primary Key (nProyectoID)
     );
 go
@@ -53,6 +53,60 @@ Create Table TEmpleadoProyecto (
     Constraint FK_TEmpleadoProyecto_TEmpleado Foreign Key (nEmpleadoID) References TEmpleado(nEmpleadoID),
     Constraint FK_TEmpleadoProyecto_TProyecto Foreign Key (nProyectoID) References TProyecto(nProyectoID)
 );
+Go
+Use EmpresaSQL;
+Go
+
+--  agregar columna cemail y columna ctelefono.
+Alter Table TEmpleado Add 
+    cEmail Varchar(150) Null,
+    cTelefono Varchar(15) Null;
+Go
+
+--  modificar longitud de cnombre a 100 caracteres.
+--  modificar longitud de capellido a 100 caracteres.
+Alter Table TEmpleado Alter Column cNombre Varchar(100) Not Null;
+Alter Table TEmpleado Alter Column cApellido Varchar(100) Not Null;
+Go
+
+--agregar columna cdireccion.
+Alter Table TEmpleado Add cDireccion Varchar(255) Null;
+Go
+
+--agregar columna nedad.
+Alter Table TEmpleado Add nEdad Int Null;
+Go
+
+--crear restricción check para edades entre 18 y 65 años.
+Alter Table TEmpleado Add Constraint CK_TEmpleado_nEdad Check (nEdad Between 18 And 65);
+Go
+
+--agregar restricción unique al correo electrónico.
+Alter Table TEmpleado Add Constraint UQ_TEmpleado_cEmail Unique (cEmail);
+Go
+
+--agregar columna bactivo tipo bit con valor por defecto 1.
+Alter Table TEmpleado Add bActivo Bit Not Null Constraint DF_TEmpleado_bActivo Default 1;
+Go
+
+-- eliminar la columna cdireccion.
+Alter Table TEmpleado Drop Column cDireccion;
+Go
+
+-- cambiar el tipo de dato de teléfono a varchar(20).
+Alter Table TEmpleado Alter Column cTelefono Varchar(20) Null;
+Go
+
+-- agregar columna cgenero.
+Alter Table TEmpleado Add cGenero Char(1) Null;
+Go
+
+--agregar restricción check para que el género solo permita m o f.
+Alter Table TEmpleado Add Constraint CK_TEmpleado_cGenero Check (cGenero In ('M', 'F'));
+Go
+
+--agregar columna dfechanacimiento.
+Alter Table TEmpleado Add dFechaNacimiento Date Null;
 Go
 
 
