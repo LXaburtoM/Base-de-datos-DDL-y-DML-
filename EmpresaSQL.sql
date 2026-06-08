@@ -109,6 +109,67 @@ Go
 Alter Table TEmpleado Add dFechaNacimiento Date Null;
 Go
 
+Create Table TSucursal (
+    nSucursalID Int Identity(1,1) Not Null,
+    cNombreSucursal Varchar(100) Not Null,
+    Constraint PK_TSucursal Primary Key (nSucursalID)
+);
+Go
+--  insertar 5 departamentos diferentes.
+Insert Into TDepartamento (cNombreDepartamento) Values 
+('Tecnología'), ('Recursos Humanos'), ('Finanzas'), ('Marketing'), ('Operaciones');
+Go
+
+-- 32. insertar 5 cargos diferentes.
+Insert Into TCargo (cNombreCargo) Values 
+('Desarrollador Senior'), ('Analista de RRHH'), ('Contador'), ('Especialista SEO'), ('Gerente de Operaciones');
+Go
+
+-- 33. insertar 10 empleados (considerando las columnas agregadas en la parte ii).
+Insert Into TEmpleado (cNIF, cNombre, cApellido, nDepartamentoID, nCargoID, dFechaContratacion, nSalario, cEmail, cTelefono, nEdad, bActivo, cGenero, dFechaNacimiento) Values
+('11111111A', 'Carlos', 'Gómez', 1, 1, '2026-01-15', 1500.00, 'carlos.gomez@empresa.com', '555-0011', 30, 1, 'M', '1996-05-12'),
+('22222222B', 'Ana', 'Martínez', 2, 2, '2025-03-20', 1200.00, 'ana.martinez@empresa.com', '555-0022', 28, 1, 'F', '1998-08-24'),
+('33333333C', 'Luis', 'Rodríguez', 3, 3, '2024-06-10', 1400.00, 'luis.rodriguez@empresa.com', '555-0033', 45, 1, 'M', '1981-11-02'),
+('44444444D', 'María', 'García', 4, 4, '2026-02-01', 1100.00, 'maria.garcia@empresa.com', '555-0044', 32, 1, 'F', '1994-04-15'),
+('55555555E', 'Jorge', 'López', 5, 5, '2023-09-05', 2000.00, 'jorge.lopez@empresa.com', '555-0055', 50, 1, 'M', '1976-12-20'),
+('66666666F', 'Elena', 'Fernández', 1, 1, '2026-05-18', 1600.00, 'elena.fernandez@empresa.com', '555-0066', 26, 1, 'F', '2000-01-30'),
+('77777777G', 'Pedro', 'Sánchez', 1, 1, '2026-01-10', 450.00, 'pedro.sanchez@empresa.com', '555-0077', 35, 1, 'M', '1991-07-08'),
+('88888888H', 'Lucía', 'Pérez', 2, 2, '2024-11-12', 1250.00, 'lucia.perez@empresa.com', '555-0088', 23, 1, 'F', '2003-10-05'),
+('99999999I', 'Miguel', 'Gutiérrez', 3, 3, '2025-07-25', 1350.00, 'miguel.gutierrez@empresa.com', '555-0099', 40, 1, 'M', '1986-03-14'),
+('00000000J', 'Sofía', 'Castro', 4, 4, '2026-02-28', 480.00, 'sofia.castro@empresa.com', '555-0100', 29, 0, 'F', '1997-02-21');
+Go
+
+-- 34. insertar 3 proyectos.
+Insert Into TProyecto (cNombreProyecto, dFechaInicio, dFechaFinalizacion) Values
+('Migración Cloud', '2026-01-01', '2026-12-31'),
+('Optimización Web', '2026-03-15', Null),
+('Auditoría Financiera', '2026-05-01', '2026-09-30');
+Go
+
+-- 35. asignar empleados a proyectos.
+Insert Into TEmpleadoProyecto (nEmpleadoID, nProyectoID) Values
+(1, 1), (1, 2), (6, 1), (6, 2), (7, 1), (3, 3), (9, 3);
+Go
+
+-- 36. insertar un empleado utilizando el valor por defecto de fecha.
+Insert Into TEmpleado (cNIF, cNombre, cApellido, nDepartamentoID, nCargoID, nSalario, cEmail, nEdad, bActivo, cGenero) Values
+('12345678X', 'Roberto', 'Díaz', 1, 1, 1550.00, 'roberto.diaz@empresa.com', 34, 1, 'M');
+Go
+
+-- 38. insertar un empleado sin indicar estado activo (tomará default 1).
+Insert Into TEmpleado (cNIF, cNombre, cApellido, nDepartamentoID, nCargoID, dFechaContratacion, nSalario, cEmail, nEdad, cGenero) Values
+('56781234Z', 'Manuel', 'Ruiz', 2, 2, '2026-05-01', 1150.00, 'manuel.ruiz@empresa.com', 41, 'M');
+Go
+
+-- 39. insertar registros usando múltiples values.
+Insert Into TDepartamento (cNombreDepartamento) Values
+('Investigación y Desarrollo'), ('Logística');
+Go
+
+
+
+
+
 
 
 
